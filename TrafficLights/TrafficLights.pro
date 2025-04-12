@@ -1,4 +1,4 @@
-QT       += core gui
+QT += core gui qml quick widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,6 +19,9 @@ HEADERS += \
 
 FORMS += \
     MainWindow.ui
+
+# Добавьте ресурсы, если используете QML файлы
+RESOURCES += qml.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

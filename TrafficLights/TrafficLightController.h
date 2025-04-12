@@ -1,10 +1,41 @@
-#ifndef TRAFFICLIGHTCONTROLLER_H
-#define TRAFFICLIGHTCONTROLLER_H
+#pragma once
 
-class TrafficLightController
+#include <QObject>
+#include <QTimer>
+
+class TrafficLightController : public QObject
 {
-public:
-    TrafficLightController();
-};
+    Q_OBJECT
+    Q_PROPERTY(int currentState READ currentState NOTIFY stateChanged)
 
-#endif // TRAFFICLIGHTCONTROLLER_H
+public:
+    enum State {
+        Red,
+        RedYellow,
+        Green,
+        Yellow,
+        Off,
+        BlinkingYellow
+    };
+    Q_ENUM(State)
+
+    explicit TrafficLightController(QObject *parent = nullptr);
+
+    int currentState() const;
+
+    Q_INVOKABLE void startNormalCycle();
+
+    Q_INVOKABLE void setBlinkingYellow();
+
+    Q_INVOKABLE void turnOff();
+
+signals:
+    void stateChanged();
+
+private slots:
+    void nextState();
+
+private:
+    State m_state;
+    QTimer *m_timer;
+};
