@@ -1,6 +1,5 @@
 #include "TrafficLightController.h"
 
-
 TrafficLightController::TrafficLightController(QObject *parent)
     : QObject(parent), m_state(Red), m_timer(new QTimer(this))
 {
@@ -8,10 +7,12 @@ TrafficLightController::TrafficLightController(QObject *parent)
     startNormalCycle();
 }
 
-int TrafficLightController::currentState() const { return m_state; }
+int TrafficLightController::currentState() const {
+    return m_state;
+}
 
 void TrafficLightController::startNormalCycle() {
-    m_timer->start(3000); // 3 секунды на каждое состояние
+    m_timer->start(3000);
     m_state = Red;
     emit stateChanged();
 }
@@ -24,7 +25,6 @@ void TrafficLightController::setBlinkingYellow() {
 
 void TrafficLightController::turnOff() {
     m_timer->stop();
-
     m_state = Off;
     emit stateChanged();
 }

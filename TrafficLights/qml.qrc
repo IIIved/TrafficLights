@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>TrafficLights.qml</file>
+    </qresource>
+</RCC>
