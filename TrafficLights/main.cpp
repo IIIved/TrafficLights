@@ -7,23 +7,16 @@
 #include "MainWindow.h"
 #include "TrafficLightController.h"
 
+Q_DECLARE_METATYPE(TrafficLightController::State)
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    // Регистрируем класс перед созданием QML-движка
+    // Регистрируем тип для QML
     qmlRegisterType<TrafficLightController>("TrafficLight", 1, 0, "TrafficLightController");
 
     MainWindow w;
-
-    // Создаем QQuickWidget для отображения QML
-    QQuickWidget *qmlWidget = new QQuickWidget();
-    qmlWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    qmlWidget->setSource(QUrl("qrc:/qml/TrafficLight.qml"));
-
-    // Устанавливаем центральный виджет
-    w.setCentralWidget(qmlWidget);
-    w.resize(800, 600);
     w.show();
 
     return a.exec();
