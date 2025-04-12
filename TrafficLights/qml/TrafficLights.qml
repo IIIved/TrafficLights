@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import TrafficLight 1.0
 
 Rectangle {
     id: root
@@ -10,16 +11,6 @@ Rectangle {
     border.color: "black"
     border.width: 2
 
-
-    //property string style: "default"
-
-    // // Загрузка CSS стилей
-    // property var styles: {
-    //     "default": Qt.resolvedUrl("styles/default.css"),
-    //     "modern": Qt.resolvedUrl("styles/modern.css")
-    // }
-
-    // Контроллер светофора
     TrafficLightController {
         id: controller
     }

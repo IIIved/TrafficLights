@@ -8,6 +8,7 @@ class TrafficLightController : public QObject
     Q_OBJECT
     Q_PROPERTY(int currentState READ currentState NOTIFY stateChanged)
 
+
 public:
     enum State {
         Red,
@@ -36,6 +37,6 @@ private slots:
     void nextState();
 
 private:
-    State m_state;
-    QTimer *m_timer;
+    State _state;
+    QTimer *_timer;
 };

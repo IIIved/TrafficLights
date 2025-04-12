@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>TrafficLights.qml</file>
+        <file>qml/TrafficLights.qml</file>
     </qresource>
 </RCC>

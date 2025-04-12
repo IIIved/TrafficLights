@@ -1,41 +1,41 @@
 #include "TrafficLightController.h"
 
 TrafficLightController::TrafficLightController(QObject *parent)
-    : QObject(parent), m_state(Red), m_timer(new QTimer(this))
+    : QObject(parent), _state(Red), _timer(new QTimer(this))
 {
-    connect(m_timer, &QTimer::timeout, this, &TrafficLightController::nextState);
+    connect(_timer, &QTimer::timeout, this, &TrafficLightController::nextState);
     startNormalCycle();
 }
 
 int TrafficLightController::currentState() const {
-    return m_state;
+    return _state;
 }
 
 void TrafficLightController::startNormalCycle() {
-    m_timer->start(3000);
-    m_state = Red;
+    _timer->start(3000);
+    _state = Red;
     emit stateChanged();
 }
 
 void TrafficLightController::setBlinkingYellow() {
-    m_timer->stop();
-    m_state = BlinkingYellow;
+    _timer->stop();
+    _state = BlinkingYellow;
     emit stateChanged();
 }
 
 void TrafficLightController::turnOff() {
-    m_timer->stop();
-    m_state = Off;
+    _timer->stop();
+    _state = Off;
     emit stateChanged();
 }
 
 void TrafficLightController::nextState() {
-    switch(m_state) {
-    case Red: m_state = RedYellow; break;
-    case RedYellow: m_state = Green; break;
-    case Green: m_state = Yellow; break;
-    case Yellow: m_state = Red; break;
-    default: m_state = Red;
+    switch(_state) {
+    case Red: _state = RedYellow; break;
+    case RedYellow: _state = Green; break;
+    case Green: _state = Yellow; break;
+    case Yellow: _state = Red; break;
+    default: _state = Red;
     }
     emit stateChanged();
 }
