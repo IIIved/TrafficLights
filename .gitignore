@@ -71,3 +71,5 @@ Makefile.Debug
 Makefile.Release
 compile_commands.json
 .qmake.stash
+*.Debug
+*.Release
