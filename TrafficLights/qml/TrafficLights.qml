@@ -68,34 +68,6 @@ Rectangle {
         }
     }
 
-    // Кнопки управления
-    Column {
-        anchors.top: parent.bottom
-        anchors.topMargin: 20
-        spacing: 10
-
-        Button {
-            text: "Нормальный режим"
-            onClicked: controller.startNormalCycle()
-        }
-
-        Button {
-            text: "Мигающий желтый"
-            onClicked: controller.setBlinkingYellow()
-        }
-
-        Button {
-            text: "Выключить"
-            onClicked: controller.turnOff()
-        }
-
-        Button {
-            text: "Сменить стиль"
-            onClicked: root.style = root.style === "default" ? "modern" : "default"
-        }
-    }
-
-    // Обновление цветов при изменении состояния
     function getRedColor(state) {
         return (state === TrafficLightController.Red ||
                state === TrafficLightController.RedYellow) ? "red" : "#300";
