@@ -16,7 +16,7 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *_ui;
     QQuickWidget *_qmlWidget;
 };
 
