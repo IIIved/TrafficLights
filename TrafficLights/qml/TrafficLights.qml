@@ -15,6 +15,49 @@ Rectangle {
         id: controller
     }
 
+    // Применение CSS стилей
+    QtObject {
+        id: styleProps
+        Component.onCompleted: {
+            var cssFile = styles[root.style];
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", cssFile, false);
+            xhr.send();
+            if (xhr.status === 200) {
+                var css = xhr.responseText;
+                var rules = css.split('}');
+                rules.forEach(function(rule) {
+                    var parts = rule.split('{');
+                    if (parts.length === 2) {
+                        var selector = parts[0].trim();
+                        var properties = parts[1].trim();
+                        if (selector === '.traffic-light') {
+                            applyProperties(root, properties);
+                        } else if (selector === '.light') {
+                            applyProperties(lightTemplate, properties);
+                        } else if (selector === '.red') {
+                            applyProperties(redLight, properties);
+                        }
+                    }
+                });
+            }
+        }
+
+        function applyProperties(item, props) {
+            var declarations = props.split(';');
+            declarations.forEach(function(decl) {
+                var pair = decl.split(':');
+                if (pair.length === 2) {
+                    var prop = pair[0].trim();
+                    var value = pair[1].trim();
+                    if (item.hasOwnProperty(prop)) {
+                        item[prop] = value;
+                    }
+                }
+            });
+        }
+    }
+
     // Шаблон для ламп
     Component {
         id: lightTemplate
