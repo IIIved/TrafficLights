@@ -30,7 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
         }
     });
 
-    // Правильная загрузка QML из ресурсов
     _qmlWidget->setSource(QUrl("qrc:/qml/TrafficLights.qml"));
 
     QVBoxLayout *layout = new QVBoxLayout(ui->trafficLightWidget);
